@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Zap, CheckCircle2 } from "lucide-react";
+import { Sparkles, Zap, CheckCircle2, User, LogIn } from "lucide-react";
 import { toast } from "sonner";
 
 const PIPELINE_STEPS = [
@@ -101,13 +102,29 @@ Output: Provide well-formatted response with critique.`);
       {/* Header */}
       <header className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-[var(--gradient-primary)] flex items-center justify-center glow">
-              <Sparkles className="h-6 w-6 text-white" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-[var(--gradient-primary)] flex items-center justify-center glow">
+                <Sparkles className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold gradient-text">Prompt Optimizer</h1>
+                <p className="text-xs text-muted-foreground">12-Step AI Enhancement Pipeline</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold gradient-text">Prompt Optimizer</h1>
-              <p className="text-xs text-muted-foreground">12-Step AI Enhancement Pipeline</p>
+            <div className="flex items-center gap-2">
+              <Link to="/auth">
+                <Button variant="ghost" size="sm">
+                  <User className="h-4 w-4 mr-2" />
+                  Account
+                </Button>
+              </Link>
+              <Link to="/auth">
+                <Button variant="gradient" size="sm">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Login
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -153,7 +170,8 @@ Example: Write a blog post about AI"
             <Button
               onClick={handleOptimize}
               disabled={isProcessing}
-              className="w-full bg-[var(--gradient-primary)] hover:opacity-90 transition-opacity"
+              variant="gradient"
+              className="w-full"
               size="lg"
             >
               {isProcessing ? (
